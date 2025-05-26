@@ -45,12 +45,21 @@ const Installation = () => {
             <p>Run CheckCle using Docker with these simple steps:</p>
             <div className="bg-muted rounded-lg p-4 font-mono text-sm space-y-4">
               <div>
-                <p className="text-muted-foreground"># Create Docker Volume for data persistence</p>
-                <p>docker volume create pb_data</p>
-              </div>
-              <div>
                 <p className="text-muted-foreground"># Docker Run Command</p>
-                <p>docker run --name checkcle --restart unless-stopped -p 8090:8090 -v pb_data:/app/pb_data --ulimit nofile=4096:8192 operacle/checkcle:latest
+                <p>
+                <pre className="whitespace-pre-wrap">
+                {`
+docker run -d \
+  --name checkcle \
+  --restart unless-stopped \
+  -p 8090:8090 \
+  -v /opt/pb_data:/mnt/pb_data \
+  --ulimit nofile=4096:8192 \
+  operacle/checkcle:latest
+  
+`}
+                </pre>
+
                 </p>
               </div>
             </div>
@@ -77,7 +86,10 @@ const Installation = () => {
             <div className="bg-muted rounded-lg p-4 font-mono text-sm space-y-2">
               <p className="text-muted-foreground"># Create docker-compose.yml</p>
               <pre className="whitespace-pre-wrap">
-                {`services:
+                {`
+version: '3.9'
+
+services:
   checkcle:
     image: operacle/checkcle:latest
     container_name: checkcle
@@ -85,14 +97,12 @@ const Installation = () => {
     ports:
       - "8090:8090"  # Web Application
     volumes:
-      - pb_data:/app/pb_data  # Ensure persistent data across rebuilds
+      - /opt/pb_data:/mnt/pb_data  # Host directory mapped to container path
     ulimits:
       nofile:
         soft: 4096
         hard: 8192
 
-volumes:
-  pb_data:  # Docker-managed volume for data persistence
   
 `}
               </pre>
