@@ -4,6 +4,16 @@
   "site": {
     "title": "CheckCle Documentation",
     "description": "Official documentation for CheckCle.",
-    "favicon": "/favicon.ico"
-  }
+    "favicon": "https://mintlify.com/favicon.ico"
+  },
+  "colors": {
+    "accent": "#3b82f6",
+    "accentForeground": "#ffffff"
+  },
+  "navigation": [
+    {
+      "title": "Introduction",
+      "url": "/"
+    }
+  ]
 }
