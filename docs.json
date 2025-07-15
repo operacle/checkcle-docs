@@ -843,18 +843,6 @@
       "destination": "/help/usage-and-billing"
     },
     {
-      "source": "/search",
-      "destination": "/introduction"
-    },
-    {
-      "source": "/beta-limits",
-      "destination": "/introduction"
-    },
-    {
-      "source": "/reference/platform-rest-API",
-      "destination": "/api-reference/introduction"
-    },
-    {
       "source": "/reference/checkcle-cli%23installation",
       "destination": "/cli/installation"
     },
